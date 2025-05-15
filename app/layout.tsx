@@ -19,25 +19,25 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-background`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <MouseFollower />
-          <div className="fixed inset-0 z-0 grid-background opacity-20 pointer-events-none"></div>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Navigation />
-            <main className="min-h-screen">{children}</main>
-          </Suspense>
-          <Analytics />
-          <SpeedInsights />
-          <Toaster />
-        </ThemeProvider>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <MouseFollower />
+        <div className="fixed inset-0 z-0 grid-background pointer-events-none"></div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navigation />
+          <main className="min-h-screen">{children}</main>
+        </Suspense>
+        <Analytics />
+        <SpeedInsights />
+        <Toaster />
+      </ThemeProvider>
       </body>
-    </html>
+      </html>
   )
 }

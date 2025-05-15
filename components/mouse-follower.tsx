@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
 
 export function MouseFollower() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
+  const { theme } = useTheme()
 
   useEffect(() => {
     // Only enable on desktop
@@ -37,20 +39,20 @@ export function MouseFollower() {
   }, [])
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 border border-tech-gold/30 hidden md:block"
-      animate={{
-        x: mousePosition.x - 16,
-        y: mousePosition.y - 16,
-        opacity: isVisible ? 0.5 : 0,
-        scale: isClicked ? 0.8 : 1,
-      }}
-      transition={{
-        type: "spring",
-        damping: 25,
-        stiffness: 300,
-        mass: 0.5,
-      }}
-    />
+      <motion.div
+          className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 border border-primary/30 hidden md:block"
+          animate={{
+            x: mousePosition.x - 16,
+            y: mousePosition.y - 16,
+            opacity: isVisible ? 0.5 : 0,
+            scale: isClicked ? 0.8 : 1,
+          }}
+          transition={{
+            type: "spring",
+            damping: 25,
+            stiffness: 300,
+            mass: 0.5,
+          }}
+      />
   )
 }
