@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 import { motion, useAnimation, useInView } from "framer-motion"
 import { useTheme } from "next-themes"
 
@@ -14,6 +14,12 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
   const controls = useAnimation()
   const { theme } = useTheme()
 
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   useEffect(() => {
     if (isInView) {
       controls.start("visible")
@@ -22,12 +28,10 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
     }
   }, [controls, isInView])
 
-  // Generate random circuit paths
   const generateCircuitPaths = () => {
     const paths = []
     const nodeCount = 20
 
-    // Horizontal paths
     for (let i = 0; i < 5; i++) {
       const y = 10 + i * 20
       const color =
@@ -50,7 +54,6 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
       })
     }
 
-    // Vertical paths
     for (let i = 0; i < 5; i++) {
       const x = 10 + i * 20
       const color =
@@ -73,7 +76,6 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
       })
     }
 
-    // Diagonal paths
     paths.push({
       d: "M0,0 L100,100",
       delay: 1.5,
@@ -84,8 +86,6 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
       delay: 1.7,
       stroke: theme === "light" ? "#42a5f5" : "#b45309",
     })
-
-    // Complex paths
     paths.push({
       d: "M0,50 C25,30 75,70 100,50",
       delay: 2.0,
@@ -97,7 +97,6 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
       stroke: theme === "light" ? "#1976d2" : "#991b1b",
     })
 
-    // Nodes
     const nodes = []
     for (let i = 0; i < nodeCount; i++) {
       const x = Math.random() * 100
@@ -111,7 +110,10 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
     return { paths, nodes }
   }
 
-  const { paths, nodes } = generateCircuitPaths()
+  const { paths, nodes } = useMemo(() => {
+    if (!isClient) return { paths: [], nodes: [] }
+    return generateCircuitPaths()
+  }, [theme, isClient])
 
   const pathVariants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -138,6 +140,8 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
     }),
   }
 
+  if (!isClient) return null // ✅ Avoid SSR mismatch
+
   return (
       <div ref={ref} className={`circuit-container ${className}`}>
         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -159,7 +163,13 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
                   key={index}
                   cx={node.x}
                   cy={node.y}
-                  className={node.type === 0 ? "circuit-node" : node.type === 1 ? "circuit-node-alt" : "circuit-node-accent"}
+                  className={
+                    node.type === 0
+                        ? "circuit-node"
+                        : node.type === 1
+                            ? "circuit-node-alt"
+                            : "circuit-node-accent"
+                  }
                   variants={nodeVariants}
                   initial="hidden"
                   animate={controls}

@@ -67,7 +67,7 @@ export default function About() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-semibold mb-4">John Doe</h3>
+              <h3 className="text-2xl font-semibold mb-4">Veeraselvam</h3>
               <p className="text-muted-foreground mb-6">
                 I'm a passionate React developer with 3 years of experience building modern web applications. I specialize
                 in creating responsive, accessible, and performant user interfaces that deliver exceptional user
@@ -81,7 +81,7 @@ export default function About() {
               <div className="flex flex-wrap gap-2">
                 <Badge className="material-badge bg-primary/10 text-primary border-primary/20">React</Badge>
                 <Badge className="material-badge bg-accent/10 text-accent border-accent/20">Next.js</Badge>
-                <Badge className="material-badge bg-primary/10 text-primary border-primary/20">TypeScript</Badge>
+                <Badge className="material-badge bg-primary/10 text-primary border-primary/20">Javascript</Badge>
                 <Badge className="material-badge bg-accent/10 text-accent border-accent/20">Tailwind CSS</Badge>
               </div>
             </motion.div>
@@ -103,7 +103,7 @@ export default function About() {
                     <div className="text-sm text-muted-foreground mb-1">{exp.year}</div>
                     <h4 className="text-xl font-medium mb-1">{exp.title}</h4>
                     <div className="text-muted-foreground mb-2">{exp.company}</div>
-                    <p className="text-muted-foreground/80">{exp.description}</p>
+                    <div className="text-muted-foreground/80" dangerouslySetInnerHTML={{ __html: exp.description }} />
                   </motion.div>
               ))}
             </div>

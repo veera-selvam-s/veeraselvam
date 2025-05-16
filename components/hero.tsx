@@ -94,7 +94,7 @@ export default function Hero() {
                 }}
                 className="hidden lg:block relative"
             >
-              <div className="relative aspect-square max-w-md mx-auto">
+              <div className="relative aspect-square max-w-lg mx-auto">
                 {/* Code editor mockup */}
                 <div className="absolute inset-0 material-card p-4 overflow-hidden">
                   <div className="flex items-center mb-4">
