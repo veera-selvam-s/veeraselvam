@@ -70,7 +70,7 @@ export default function Contact() {
   return (
     <div ref={containerRef} className="container mx-auto px-4">
       <motion.div style={{ opacity, y }} className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-ironman-red to-ironman-gold">
+        <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Get In Touch
         </h2>
 
