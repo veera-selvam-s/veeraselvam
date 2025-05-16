@@ -88,7 +88,7 @@ export default function Skills() {
                   <div>
                     <h4 className="text-lg font-medium mb-3">UI/UX & Design</h4>
                     <div className="flex flex-wrap gap-3">
-                      {["Tailwind CSS", "Styled Components", "Framer Motion", "Figma", "Adobe XD"].map((tech, i) => (
+                      {["Tailwind CSS", "Styled Components", "Ant Design", "Material UI", "Figma",].map((tech, i) => (
                           <motion.div
                               key={tech}
                               initial={{ opacity: 0, scale: 0.8 }}
@@ -96,24 +96,6 @@ export default function Skills() {
                               transition={{ duration: 0.3, delay: i * 0.1 }}
                               viewport={{ once: true }}
                               className="material-badge px-3 py-1.5 rounded-md bg-accent/10 text-accent text-sm"
-                          >
-                            {tech}
-                          </motion.div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-lg font-medium mb-3">Backend & Tools</h4>
-                    <div className="flex flex-wrap gap-3">
-                      {["Node.js", "Express", "MongoDB", "Git", "Docker", "AWS"].map((tech, i) => (
-                          <motion.div
-                              key={tech}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.3, delay: i * 0.1 }}
-                              viewport={{ once: true }}
-                              className="material-badge px-3 py-1.5 rounded-md bg-secondary/10 text-secondary text-sm"
                           >
                             {tech}
                           </motion.div>

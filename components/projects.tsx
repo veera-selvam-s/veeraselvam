@@ -29,6 +29,16 @@ const projects: Project[] = [
     demoUrl: "https://movapp-liard.vercel.app/",
     githubUrl: "https://github.com/veera-selvam-s/Movapp",
   },
+  {
+    id: 2,
+    title: "react-dialog-confirm - the simple modal react component",
+    description:
+        "react-dialog-confirm is a React component that provides a simple way to display confirmation dialogs in your application.",
+    image: "/react-dialog-confirm.png",
+    tags: ["React", "CSS"],
+    demoUrl: "https://react-dialog-confirm.netlify.app/",
+    githubUrl: "https://github.com/veera-selvam-s/react-dialog-confirm",
+  },
 ]
 
 export default function Projects() {

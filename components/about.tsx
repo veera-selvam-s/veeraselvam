@@ -79,8 +79,8 @@ export default function About() {
                 architecture and the ecosystem around it.
               </p>
               <div className="flex flex-wrap gap-2">
-                <Badge className="material-badge bg-primary/10 text-primary border-primary/20">React</Badge>
                 <Badge className="material-badge bg-accent/10 text-accent border-accent/20">Next.js</Badge>
+                <Badge className="material-badge bg-primary/10 text-primary border-primary/20">React</Badge>
                 <Badge className="material-badge bg-primary/10 text-primary border-primary/20">Javascript</Badge>
                 <Badge className="material-badge bg-accent/10 text-accent border-accent/20">Tailwind CSS</Badge>
               </div>
