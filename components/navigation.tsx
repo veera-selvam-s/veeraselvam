@@ -20,7 +20,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > 74)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -31,20 +31,16 @@ export default function Navigation() {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false)
-
-    // Smooth scroll to section
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
+  if (!scrolled) return null // ⬅️ Do not render until scrollY > 74
+
   return (
-      <header
-          className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-              scrolled ? "bg-background/80 backdrop-blur-md border-b border-border" : "bg-transparent"
-          }`}
-      >
+      <header className="fixed top-0 w-full z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -55,7 +51,6 @@ export default function Navigation() {
             <Link href="/">Veeraselvam</Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item, index) => (
                 <motion.div
@@ -72,7 +67,6 @@ export default function Navigation() {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
             <Button variant="ghost" size="icon" className="ml-2" onClick={toggleMenu} aria-label="Toggle menu">
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -80,7 +74,6 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
               <motion.div

@@ -49,7 +49,7 @@ export default function About() {
                 viewport={{ once: true }}
                 className="relative"
             >
-              <div className="aspect-square rounded-lg overflow-hidden material-card">
+              <div className="aspect-square rounded-lg overflow-hidden material-card !bg-sky-100 border-sky-200 border">
                 <Image
                     src="/about.png"
                     alt="Developer Portrait"
