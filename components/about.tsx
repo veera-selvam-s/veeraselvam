@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
+import { getOptimizedImageProps } from "@/lib/utils"
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -51,10 +52,7 @@ export default function About() {
             >
               <div className="aspect-square rounded-lg overflow-hidden material-card !bg-sky-100 border-sky-200 border">
                 <Image
-                    src="/about.png"
-                    alt="Developer Portrait"
-                    width={600}
-                    height={600}
+                    {...getOptimizedImageProps("/about.png", "Veeraselvam - React Developer Portrait", 600, 600, true)}
                     className="object-cover"
                 />
               </div>

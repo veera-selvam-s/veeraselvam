@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Loader2, Github, Linkedin } from "lucide-react"
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -119,6 +119,40 @@ export default function Contact() {
                   <p className="text-base">Coimbatore, Tamil Nadu, India.</p>
                 </div>
               </div>
+
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+                  <Github className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-muted-foreground">GitHub</h4>
+                  <a 
+                    href="https://github.com/veera-selvam-s" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-base hover:text-primary transition-colors"
+                  >
+                    github.com/veera-selvam-s
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 text-accent">
+                  <Linkedin className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-muted-foreground">LinkedIn</h4>
+                  <a 
+                    href="https://linkedin.com/in/veeraselvam" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-base hover:text-accent transition-colors"
+                  >
+                    linkedin.com/in/veeraselvam
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className="pt-8">
@@ -142,7 +176,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-card border border-ironman-gold/20 rounded-xl p-8 shadow-lg iron-panel"
+            className="bg-card border border-ironman-gold/20 rounded-xl p-8 shadow-lg iron-panel h-fit"
           >
             <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
             <Form {...form}>

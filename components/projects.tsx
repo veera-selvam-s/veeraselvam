@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github } from "lucide-react"
 import Image from "next/image"
+import { getOptimizedImageProps } from "@/lib/utils"
 
 interface Project {
   id: number
@@ -72,10 +73,13 @@ export default function Projects() {
                   <Card className="overflow-hidden material-card h-full">
                     <div className="relative aspect-video overflow-hidden">
                       <Image
-                          src={project.image || "/placeholder.svg"}
-                          alt={project.title}
-                          width={800}
-                          height={600}
+                          {...getOptimizedImageProps(
+                            project.image || "/placeholder.svg", 
+                            `${project.title} - Project Screenshot`,
+                            800,
+                            600,
+                            index === 0 // Priority for first project
+                          )}
                           className="object-cover transition-transform duration-500 ease-in-out"
                           style={{
                             transform: hoveredId === project.id ? "scale(1.05)" : "scale(1)",

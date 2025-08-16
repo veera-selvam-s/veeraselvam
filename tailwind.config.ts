@@ -10,6 +10,18 @@ const config = {
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   prefix: "",
+  // Production optimizations
+  corePlugins: {
+    // Disable unused plugins to reduce bundle size
+    preflight: true,
+    container: true,
+    accessibility: false, // Disable if not using accessibility utilities
+    backgroundOpacity: true,
+    borderOpacity: true,
+    textOpacity: true,
+    placeholderOpacity: false, // Disable if not using placeholder utilities
+    divideOpacity: true,
+  },
   theme: {
     container: {
       center: true,
@@ -137,6 +149,10 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  // Additional production optimizations
+  future: {
+    hoverOnlyWhenSupported: true, // Optimize hover states for touch devices
+  },
 } satisfies Config
 
 export default config

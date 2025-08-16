@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "target": "ES6",
+    "target": "ES2020", // Updated to ES2020 for better optimization
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -20,7 +20,17 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    // Additional optimizations for better tree-shaking
+    "declaration": false,
+    "removeComments": true,
+    "importHelpers": true,
+    "noUnusedLocals": false, // Keep false to avoid build errors in development
+    "noUnusedParameters": false, // Keep false to avoid build errors in development
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": false,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false // Better for bundling optimization
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
