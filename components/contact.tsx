@@ -237,7 +237,9 @@ export default function Contact() {
                 />
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-ironman-red to-ironman-gold hover:from-ironman-red/90 hover:to-ironman-darkgold"
+                  variant="default"
+                  size="lg"
+                  className="w-full material-button"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useMemo } from "react"
-import { motion, useAnimation, useInView } from "framer-motion"
+import { motion, useAnimation, useInView, Variants } from "framer-motion"
 import { useTheme } from "next-themes"
 
 interface CircuitProps {
@@ -115,19 +115,19 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
     return generateCircuitPaths()
   }, [theme, isClient])
 
-  const pathVariants = {
+  const pathVariants: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: (delay: number) => ({
       pathLength: 1,
       opacity: theme === "light" ? 0.5 : 0.8,
       transition: {
-        pathLength: { delay, duration: 2, ease: "easeInOut" },
+        pathLength: { delay, duration: 2, ease: [0.4, 0, 0.2, 1] },
         opacity: { delay, duration: 0.5 },
       },
     }),
   }
 
-  const nodeVariants = {
+  const nodeVariants: Variants = {
     hidden: { opacity: 0, scale: 0 },
     visible: (delay: number) => ({
       opacity: theme === "light" ? 0.7 : 1,
@@ -135,7 +135,7 @@ export function CircuitAnimation({ className = "" }: CircuitProps) {
       transition: {
         delay,
         duration: 0.5,
-        ease: "easeOut",
+        ease: [0.16, 1, 0.3, 1],
       },
     }),
   }

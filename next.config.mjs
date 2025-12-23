@@ -3,11 +3,16 @@ import withBundleAnalyzer from "@next/bundle-analyzer";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Build optimizations
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // Note: eslint config moved to next.config.mjs is deprecated in Next.js 16
+  // Use next lint command or configure in eslint.config.js instead
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // Fix TypeScript errors instead of ignoring them
+  },
+  
+  // Turbopack configuration (Next.js 16 uses Turbopack by default)
+  // Adding empty config to allow webpack config to work
+  turbopack: {
+    root: process.cwd(), // Fix lockfile warning by setting explicit root
   },
 
   // Advanced bundling optimizations

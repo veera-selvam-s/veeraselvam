@@ -29,18 +29,33 @@ export default function Navigation() {
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLButtonElement>, href: string) => {
+    e.preventDefault()
     setIsOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    
+    // Small delay to ensure menu closes before scrolling
+    setTimeout(() => {
+      const element = document.querySelector(href)
+      if (element) {
+        // Get the element's position relative to viewport
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+        const offsetPosition = elementPosition - 80 // Account for fixed header height
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        })
+      } else {
+        // Fallback: try scrolling to hash
+        window.location.hash = href
+      }
+    }, 100)
   }
 
   if (!scrolled) return null // ⬅️ Do not render until scrollY > 74
 
   return (
-      <header className="fixed top-0 w-full z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-border">
+      <header className="fixed top-0 w-full z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -59,7 +74,11 @@ export default function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
-                  <Button variant="ghost" className="relative group" onClick={() => handleNavClick(item.href)}>
+                  <Button 
+                    variant="ghost" 
+                    className="relative group" 
+                    onClick={(e) => handleNavClick(e, item.href)}
+                  >
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
                   </Button>
@@ -81,9 +100,9 @@ export default function Navigation() {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border"
+                  className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border relative z-50"
               >
-                <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <div className="container mx-auto px-4 py-4 flex flex-col space-y-2">
                   {navItems.map((item, index) => (
                       <motion.div
                           key={item.name}
@@ -91,7 +110,11 @@ export default function Navigation() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.1 }}
                       >
-                        <Button variant="ghost" className="w-full justify-start" onClick={() => handleNavClick(item.href)}>
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-start text-left py-3 px-4 hover:bg-accent/50 active:bg-accent" 
+                          onClick={(e) => handleNavClick(e, item.href)}
+                        >
                           {item.name}
                         </Button>
                       </motion.div>

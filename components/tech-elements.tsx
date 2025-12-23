@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useEffect, useState } from "react"
-import { motion, useAnimation } from "framer-motion"
+import { motion, useAnimation, Variants } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
 export function TechCircuit() {
@@ -22,19 +22,19 @@ export function TechCircuit() {
     }
   }, [controls, inView])
 
-  const lineVariants = {
+  const lineVariants: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: {
       pathLength: 1,
       opacity: 1,
       transition: {
-        pathLength: { duration: 2, ease: "easeInOut" },
+        pathLength: { duration: 2, ease: [0.4, 0, 0.2, 1] },
         opacity: { duration: 0.5 },
       },
     },
   }
 
-  const dotVariants = {
+  const dotVariants: Variants = {
     hidden: { opacity: 0, scale: 0 },
     visible: (i: number) => ({
       opacity: 1,

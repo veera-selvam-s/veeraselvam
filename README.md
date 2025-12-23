@@ -16,8 +16,8 @@ A modern, futuristic portfolio website for React developers built with Next.js, 
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- [Bun](https://bun.sh) (recommended) or Node.js 18+
+- Bun is a fast all-in-one JavaScript runtime, bundler, and package manager
 
 ### Installation
 
@@ -29,9 +29,7 @@ cd portfolio
 
 2. Install dependencies:
 \`\`\`bash
-npm install
-# or
-yarn install
+bun install
 \`\`\`
 
 3. Set up environment variables:
@@ -42,9 +40,7 @@ RESEND_API_KEY=your_resend_api_key
 
 4. Run the development server:
 \`\`\`bash
-npm run dev
-# or
-yarn dev
+bun run dev
 \`\`\`
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
